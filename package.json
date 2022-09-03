@@ -1,0 +1,13 @@
+{
+  "name": "test-storybook-addon",
+  "version": "1.0.0",
+  "description": "storybook の addon の実装練習",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sterashima78/test-storybook-addon.git"
+  },
+  "license": "MIT"
+}
