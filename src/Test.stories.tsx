@@ -8,5 +8,10 @@ export default {
 export const testStory: Story<TestProps> = {
     args: {
         msg: "hoge"
+    },
+    parameters: {
+        myAddon: {
+            data: 'this data is passed to the addon',
+        },
     }
 }

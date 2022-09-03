@@ -3,4 +3,5 @@ export default {
     stories: [
         "../src/**/*.stories.tsx",
     ],
+    addons: ["../libs/index.js"]
 }

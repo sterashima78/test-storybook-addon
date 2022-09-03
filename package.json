@@ -5,6 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "build": "tsup",
     "dev": "storybook dev -p 6006",
     "build:storybook": "storybook build"
   },
@@ -17,9 +18,19 @@
     "@storybook/react-vite": "7.0.0-alpha.28",
     "@tsconfig/vite-react": "1.0.1",
     "vite": "3.0.9",
-    "@vitejs/plugin-react": "2.0.1"
+    "@vitejs/plugin-react": "2.0.1",
+    "tsup": "6.2.3",
+    "@storybook/addons": "7.0.0-alpha.28",
+    "@storybook/components": "7.0.0-alpha.28",
+    "@storybook/api": "7.0.0-alpha.28"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "react": ">= 16",
+    "react-dom": ">= 16",
+    "@storybook/components": ">= 7.0.0-alpha.28",
+    "@storybook/addons": ">= 7.0.0-alpha.28",
+    "@storybook/api": ">= 7.0.0-alpha.28"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sterashima78/test-storybook-addon.git"
