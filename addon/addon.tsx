@@ -1,11 +1,12 @@
 import React from 'react';
 import { addons, types } from '@storybook/addons';
 
-import { AddonPanel } from '@storybook/components';
-import { useParameter } from '@storybook/api';
+import { AddonPanel, SyntaxHighlighter, TabWrapper } from '@storybook/components';
+import { useParameter, useStorybookApi } from '@storybook/api';
 
 const ADDON_ID = 'myaddon';
 const PANEL_ID = `${ADDON_ID}/panel`;
+const TAB_ID = `${ADDON_ID}/tab`;
 const PARAM_KEY = 'myAddon';
 
 const MyPanel = () => {
@@ -23,5 +24,22 @@ addons.register(ADDON_ID, () => {
         <MyPanel />
       </AddonPanel>
     ),
+  });
+  addons.add(TAB_ID, {
+    type: types.TAB,
+    title: 'My Addon',
+    route: ({ storyId }) => `/myaddon/${storyId}`,
+    match: ({ viewMode }) => {
+      console.log(viewMode, "addon")
+      return viewMode === "myaddon"
+    },
+    render: ({ active, key }) => {
+      const api = useStorybookApi()
+      return (
+        <TabWrapper active={!!active} key={key}>
+          <SyntaxHighlighter language='json'>{JSON.stringify(api.getCurrentStoryData(), undefined, 2)}</SyntaxHighlighter>
+        </TabWrapper>
+      )
+    }
   });
 });
