@@ -1,12 +1,13 @@
 import React from 'react';
 import { addons, types } from '@storybook/addons';
 
-import { AddonPanel, SyntaxHighlighter, TabWrapper } from '@storybook/components';
-import { useParameter, useStorybookApi } from '@storybook/api';
+import { AddonPanel, SyntaxHighlighter, TabWrapper, Icons, IconButton } from '@storybook/components';
+import { useParameter, useStorybookApi, useGlobals } from '@storybook/api';
 
 const ADDON_ID = 'myaddon';
 const PANEL_ID = `${ADDON_ID}/panel`;
 const TAB_ID = `${ADDON_ID}/tab`;
+const TOOL_ID = `${ADDON_ID}/tool`;
 const PARAM_KEY = 'myAddon';
 
 const MyPanel = () => {
@@ -41,5 +42,26 @@ addons.register(ADDON_ID, () => {
         </TabWrapper>
       )
     }
+  });
+
+  addons.add(TOOL_ID, {
+    type: types.TOOL,
+    title: "My addon",
+    match: ({ viewMode }) => !!(viewMode && viewMode.match(/^(story|docs)$/)),
+    render: ()=> {
+      const [{ activeMyAddon }, updateGlobals] = useGlobals();
+      const toggle = () => updateGlobals({ 
+        activeMyAddon: !activeMyAddon
+      })
+      return <IconButton
+        key={TOOL_ID}
+        active={activeMyAddon}
+        title="Enable my addon"
+        onClick={toggle}
+      >
+        <Icons icon="star" />
+      </IconButton>
+    }
+    
   });
 });
